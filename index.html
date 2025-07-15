@@ -1,105 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulario de Matrícula</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2c3e50" />
 </head>
 <body>
-  <form name="matriculaForm" method="POST" data-netlify="true" class="formulario">
-    <input type="hidden" name="form-name" value="matriculaForm" />
-    <img src="logo.png" alt="Logo de la institución" class="logo" />
+  <form class="formulario" id="matriculaForm" action="#" method="POST">
     <h2>Regístrate aquí</h2>
-
-    <div class="fila">
-      <input type="text" name="nombres" placeholder="Nombres*" required />
-      <input type="text" name="apellido_paterno" placeholder="Apellido Paterno*" required />
-    </div>
-
-    <div class="fila">
-      <input type="text" name="apellido_materno" placeholder="Apellido Materno*" required />
-      <input type="text" name="dni" placeholder="DNI*" pattern="\d{8}" required />
-    </div>
-
-    <div class="fila">
-      <input type="tel" name="celular" placeholder="Celular*" required />
-      <input type="email" name="email" placeholder="Email*" required />
-    </div>
-
-    <select name="carrera" id="carrera" required>
-      <option value="">Escoge tu carrera*</option>
-      <option value="peluqueria">PELUQUERÍA Y BARBERÍA</option>
-      <option value="panaderia">PANADERÍA Y PASTELERÍA</option>
-      <option value="electricidad">ELECTRICIDAD Y ELECTRÓNICA</option>
-      <option value="plataformas">PLATAFORMAS Y SERVICIOS DE TECNOLOGÍA DE LA INFORMACIÓN</option>
-      <option value="cuidado">CUIDADO DE LA PERSONA EN EL HOGAR</option>
-      <option value="soporte">SOPORTE TÉCNICO Y OPERACIÓN DE COMPUTADORAS</option>
-      <option value="soldadura">SOLDADURA Y CALDERERÍA</option>
-      <option value="madera">FABRICACIÓN ARTESANAL DE PRODUCTOS DE MADERA</option>
-      <option value="prendas">FABRICACIÓN DE PRENDAS DE VESTIR</option>
-      <option value="confeccion">CORTE Y CONFECCIÓN DE PRENDAS DE VESTIR</option>
-      <option value="motos">MECÁNICA DE MOTOS</option>
-      <option value="audiovisuales">AUDIOVISUALES</option>
-    </select>
-
-    <select name="modulo" required>
-      <option value="">Elige tu módulo*</option>
-      <option value="Módulo 1">Módulo 1</option>
-      <option value="Módulo 2">Módulo 2</option>
-      <option value="Módulo 3">Módulo 3</option>
-      <option value="Módulo 4">Módulo 4</option>
-    </select>
-
-    <select name="turno" required>
-      <option value="">Elige tu turno*</option>
-      <option value="Mañana">Mañana</option>
-      <option value="Tarde">Tarde</option>
-      <option value="Noche">Noche</option>
-    </select>
-
-    <select name="docente" id="docente" required>
-      <option value="">Elige tu docente*</option>
-    </select>
-
-    <label class="checkbox">
-      <input type="checkbox" name="autorizacion" required />
-      Autorizo el tratamiento de mis datos personales para fines informativos.*
-    </label>
-
+    <input type="text" name="nombres" placeholder="Nombres*" required />
+    <input type="text" name="dni" placeholder="DNI*" pattern="\d{8}" required />
     <button type="submit">Enviar</button>
   </form>
-
   <script>
-    const docentesPorCarrera = {
-      peluqueria: ["María Cortez", "José López", "Karina Vidal", "Diego Ramos"],
-      panaderia: ["Claudia León", "Pedro Suárez", "Esteban Gamarra", "Fiorella Medina"],
-      electricidad: ["Luis Zapata", "Yolanda Paredes", "Juan Carlos Ruiz", "Emma Ortega"],
-      plataformas: ["Daniel Quispe", "Ana Torres", "Miguel Guzmán", "Lorena Soto"],
-      cuidado: ["Erika Romero", "Lucía Torres", "Bruno Aguirre", "Rosa Valdez"],
-      soporte: ["Hugo Meneses", "Jazmín Chávez", "Sergio Luján", "Pamela Robles"],
-      soldadura: ["Javier Navarro", "Tatiana Núñez", "Marco Alfaro", "Diana Arias"],
-      madera: ["Óscar Meza", "Camila Ríos", "Renato Gallardo", "Valeria Poma"],
-      prendas: ["Natalia Paredes", "Alonso Díaz", "Gabriela Limachi", "Julián Castro"],
-      confeccion: ["Lucero Medina", "Patricio Salas", "Vanessa Tello", "Gustavo Campos"],
-      motos: ["Franklin Romero", "Ximena Chávez", "Andrés Navarro", "Kelly Reyes"],
-      audiovisuales: ["Elena Olivares", "Fabián Ramírez", "Milagros Sánchez", "Rodrigo Peña"]
-    };
-
-    const selectCarrera = document.getElementById("carrera");
-    const selectDocente = document.getElementById("docente");
-
-    selectCarrera.addEventListener("change", function () {
-      const carrera = this.value;
-      const docentes = docentesPorCarrera[carrera] || [];
-      selectDocente.innerHTML = '<option value="">Elige tu docente*</option>';
-      docentes.forEach(docente => {
-        const option = document.createElement("option");
-        option.value = docente;
-        option.textContent = docente;
-        selectDocente.appendChild(option);
-      });
-    });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
   </script>
 </body>
 </html>
